@@ -1,0 +1,28 @@
+---
+- name: Play 1
+  hosts: localhost
+  tasks:
+    - name: Execute Date Command
+      command: date
+      register: date_output
+
+    - name: Execute java version check
+      command: java -version
+      register: java_version
+
+    - name: Execute ansible version check
+      command: ansible --version
+      register: ansible_version
+
+    - name: Execute docker version check
+      command: docker --version
+      register: docker_version
+
+    - name: Test local action
+      local_action: command echo "Testing local action"
+
+    - name: Create new folder
+      file:
+        path: /home/ubuntu/ansible_test_folder
+        state: directory
+        mode: '0755'
